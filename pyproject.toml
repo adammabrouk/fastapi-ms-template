@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "service_name"
+name = "service-name"
 version = "0.1.0"
 description = ""
 authors = ["X Y <X@Y.Z>"]
