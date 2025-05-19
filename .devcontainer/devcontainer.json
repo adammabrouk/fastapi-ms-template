@@ -5,12 +5,15 @@
        "context": ".."
     },
     "settings": {
-        "python.pythonPath": "/opt/venv/bin/python",
         "editor.formatOnSave": true,
         "python.linting.enabled": true,
         "python.linting.flake8Enabled": true,
         "python.linting.mypyEnabled": true,
         "python.linting.pylintEnabled": true
+        "terminal.integrated.env.linux": {
+            "VIRTUAL_ENV": "${workspaceFolder}/.venv",
+            "PATH": "${workspaceFolder}/.venv/bin:${env:PATH}"
+        }
     },
     "extensions": [
         "ms-python.python",
