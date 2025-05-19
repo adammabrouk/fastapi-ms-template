@@ -40,7 +40,7 @@ COPY --from=builder /app/.venv ${APP_VENV}
 # Copy your application code.
 # Because of .dockerignore, only necessary files will be copied by "COPY . ."
 # This assumes your Dockerfile is in the root of your project,
-# and "bank_simulation_proxy" is a module/package in that root.
+# and your microservice name folder is a module/package in that root.
 COPY . .
 
 # Activate the virtual environment by adding its bin directory to PATH
@@ -50,4 +50,4 @@ EXPOSE 8000
 
 # Your CMD remains largely the same, but now runs from the venv's path implicitly
 # The uvicorn here will be the one installed in APP_VENV
-CMD uvicorn _service_name.main:app --host 0.0.0.0 --port ${PORT:-8000}
+CMD uvicorn service_name.main:app --host 0.0.0.0 --port ${PORT:-8000}
