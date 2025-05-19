@@ -25,9 +25,3 @@ RUN poetry install
 
 # Copy the rest of the application code
 COPY . .
-
-# Expose the application port
-EXPOSE 8000
-
-# Command to run the application
-CMD ["uvicorn", "_service_name.main:app", "--host", "0.0.0.0", "--port", "8000"]

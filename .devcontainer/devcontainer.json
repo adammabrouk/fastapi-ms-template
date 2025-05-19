@@ -1,6 +1,6 @@
 {
     "name": "FastAPI Dev Container",
-    "dockerFile": "../Dockerfile",
+    "dockerFile": "Dockerfile",
     "settings": {
         "python.pythonPath": "/opt/venv/bin/python",
         "editor.formatOnSave": true,
@@ -13,6 +13,5 @@
         "ms-python.python",
         "ms-python.vscode-pylance",
         "ms-azuretools.vscode-docker"
-    ],
-    "postCreateCommand": "pip install -r requirements.txt && poetry install --only dev"
+    ]
 }
