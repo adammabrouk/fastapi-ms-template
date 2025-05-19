@@ -1,6 +1,9 @@
 {
     "name": "FastAPI Dev Container",
-    "dockerFile": "Dockerfile",
+    "build": {
+       "dockerfile": ".devcontainer/Dockerfile",
+       "context": ".."
+    },
     "settings": {
         "python.pythonPath": "/opt/venv/bin/python",
         "editor.formatOnSave": true,
