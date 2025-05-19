@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "bank-simulation-proxy"
+version = "0.1.0"
+description = "Unified API proxy for Moroccan bank simulations"
+authors = ["Adam MABROUK <adam@aigents.services>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.110"
+uvicorn = { extras = ["standard"], version = "^0.27" }
+pydantic = "^2.0"
+python-dotenv = "^1.0"
+requests = "^2.32.3"
+
+[tool.poetry.group.dev.dependencies]
+isort = "^6.0.1"
+flake8 = "^7.2.0"
+pylint = "^3.3.7"
+ruff = "^0.11.9"
+mypy = "^1.15.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 79

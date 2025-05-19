@@ -1,0 +1,55 @@
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Poetry / Python virtual environments
+.venv
+venv/
+*.venv/
+# If poetry creates venvs in a cache dir outside project, those are usually not copied anyway
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE / Editor specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+pytestdebug.log
+# Add any other testing output files/folders
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Build artifacts (if any from other processes)
+dist/
+build/
+*.egg-info/
+
+# Local environment configuration (if you use .env files not meant for the image)
+.env
+*.env.*local
+
+# READMEs or documentation not needed in the image (optional, depends on your needs)
+# README.md
+# docs/
+
+# Any local logs
+*.log
+
+# Any other files or directories not needed in the production image
+# e.g., local_scripts/, notebooks/, etc.
