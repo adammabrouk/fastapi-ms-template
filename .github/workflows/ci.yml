@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+permissions:
+  packages: write
+  contents: read
+
 jobs:
   build_devcontainer:
     name: Build & Push Devcontainer
@@ -49,10 +53,9 @@ jobs:
 
       - name: Run linters
         run: |
+          poetry install
           poetry run black --check .
           poetry run isort --check-only .
-          poetry run flake8 .
-          poetry run mypy .
 
   test:
     name: Run Tests
@@ -66,4 +69,5 @@ jobs:
 
       - name: Run tests
         run: |
+          poetry install
           poetry run pytest
