@@ -1,8 +1,9 @@
 import pytest
 from fastapi.testclient import TestClient
 
-from service_name.main import \
-    app  # TODO : remember to rename your service after copying the template
+from service_name.main import (
+    app,
+)  # TODO : remember to rename your service after copying the template
 
 client = TestClient(app)
 
