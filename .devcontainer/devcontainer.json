@@ -1,0 +1,18 @@
+{
+    "name": "FastAPI Dev Container",
+    "dockerFile": "../Dockerfile",
+    "settings": {
+        "python.pythonPath": "/opt/venv/bin/python",
+        "editor.formatOnSave": true,
+        "python.linting.enabled": true,
+        "python.linting.flake8Enabled": true,
+        "python.linting.mypyEnabled": true,
+        "python.linting.pylintEnabled": true
+    },
+    "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-azuretools.vscode-docker"
+    ],
+    "postCreateCommand": "pip install -r requirements.txt && poetry install --only dev"
+}

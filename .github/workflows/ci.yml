@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build_devcontainer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build and push dev container
+        run: |
+          docker build -t ghcr.io/${{ github.repository }}/devcontainer:latest -f .devcontainer/Dockerfile .
+          docker push ghcr.io/${{ github.repository }}/devcontainer:latest
+
+  lint:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository }}/devcontainer:latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          poetry install --only dev
+
+      - name: Run linters
+        run: |
+          poetry run black --check .
+          poetry run isort --check-only .
+          poetry run flake8 .
+          poetry run mypy .
+
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository }}/devcontainer:latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          poetry install --only dev
+
+      - name: Run tests
+        run: |
+          poetry run pytest
