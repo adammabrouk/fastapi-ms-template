@@ -4,6 +4,7 @@
        "dockerfile": "Dockerfile",
        "context": ".."
     },
+    "postCreateCommand": "poetry install",
     "settings": {
         "editor.formatOnSave": true,
         "python.linting.enabled": true,
