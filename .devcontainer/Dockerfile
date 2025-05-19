@@ -1,27 +1,28 @@
-# Use a base image that supports Docker-in-Docker
-FROM docker:20.10.7-dind
+# Use lightweight Python image
+FROM python:3.11-slim
 
-# Install Docker and other necessary dependencies
-RUN apk add --no-cache \
-    python3 \
-    py3-pip \
-    py3-setuptools \
-    py3-wheel \
-    py3-virtualenv \
-    py3-poetry \
-    docker-cli \
-    docker-compose
-
-# Set environment variables
-ENV POETRY_VIRTUALENVS_IN_PROJECT=true \
+# Set environment variables for Poetry
+ENV POETRY_VERSION=2.1.2 \
+    POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1
 
-# Copy pyproject.toml and poetry.lock files
+# Install system dependencies and Poetry
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    git \
+    build-essential \
+ && pip install --no-cache-dir poetry==$POETRY_VERSION \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
 WORKDIR /workspace
+
+# Copy dependency files first (to cache better)
 COPY pyproject.toml poetry.lock ./
 
-# Install all dependencies including dev dependencies
+# Install dependencies
 RUN poetry install
 
-# Copy the rest of the application code
+# Copy application code
 COPY . .
